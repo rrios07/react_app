@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
     "create-react-app": "^5.0.1"
   },
   "workspaces": [
-	  "packages/*"
-  ] 
+    "packages/*"
+  ],
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }
