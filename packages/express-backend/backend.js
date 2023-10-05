@@ -87,12 +87,18 @@ app.get('/users/:id', (req, res) => {
 const addUser = (user) => {
     users['users_list'].push(user);
     return user;
+}	
+
+function  genId() {
+    return Math.floor(Math.random() * 1000);
 }
 
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
+    userToAdd.id = genId();
     addUser(userToAdd);
-    res.send();
+    res.status(201)
+    res.send('User added.');
 });
 
 const findUserIndexById = (id) =>
