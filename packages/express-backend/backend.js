@@ -97,8 +97,7 @@ app.post('/users', (req, res) => {
     const userToAdd = req.body;
     userToAdd.id = genId();
     addUser(userToAdd);
-    res.status(201)
-    res.send('User added.');
+    res.status(201).send(JSON.stringify(userToAdd));
 });
 
 const findUserIndexById = (id) =>
