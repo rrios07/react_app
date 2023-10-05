@@ -44,11 +44,32 @@ function MyApp() {
         })
   }
 
-  function removeOneCharacter (index) {
-      const updated = characters.filter((character, i) => {
-	  return i !== index
-      });
-    setCharacters(updated);
+  function deleteUser(index) {
+    const person = characters[index]
+    const promise = fetch(`Http://localhost:8000/users/${person.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(person),
+    });
+
+    return promise;
+  }
+
+   function removeOneCharacter (index) {
+    deleteUser(index)
+    .then((res) => {
+       if (res.status === 204){
+          const updated = characters.filter((character, i) => {
+	     return i !== index
+      	  });
+    	  setCharacters(updated);
+       }	
+    })
+    .catch((error) => {
+        console.log(error);
+    })
   }
   return (
     <div className="container">

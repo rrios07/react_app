@@ -95,7 +95,7 @@ function  genId() {
 
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
-    userToAdd.id = genId();
+    userToAdd.id = genId().toString();
     addUser(userToAdd);
     res.status(201).send(JSON.stringify(userToAdd));
 });
@@ -111,7 +111,7 @@ app.delete('/users/:id', (req, res) => {
         res.status(404).send('Resource not found.');
     } else {
 	users['users_list'].splice(result, 1);
-        res.send();
+        res.status(204).send();
     }
 });
 
